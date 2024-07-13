@@ -1,6 +1,6 @@
 import './css/App.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './counterSlice.js'
+import { decrement, increment, incrementByAmount } from './counterSlice.js'
 import ApiComponent from './api/getMovies';
 
 function App() {
@@ -23,6 +23,12 @@ function App() {
           onClick={() => dispatch(decrement())}
         >
           Decrement
+        </button>
+        <button
+          aria-label="add amount"
+          onClick={() => dispatch(incrementByAmount(6))}
+        >
+          add amount
         </button>
       </div>
      
