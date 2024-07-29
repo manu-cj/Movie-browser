@@ -1,10 +1,27 @@
 // src/ApiComponent.js
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const ApiComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [colorIsChange, setColorIsChange] = useState(false);
+
+    const divRef = useRef(null);
+
+    const changeColor = () => {
+      if (colorIsChange === false) {
+        divRef.current.style.backgroundColor = "white";
+        divRef.current.style.color = '#2E2E2E'
+        setColorIsChange(true);
+      } else {
+        divRef.current.style.backgroundColor = "#2E2E2E";
+        divRef.current.style.color = 'white'
+        setColorIsChange(false);
+      }
+        
+    };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,11 +53,12 @@ const ApiComponent = () => {
   return (
     <div>
       <h1>API Data</h1>
-      <div>
+      <div ref={divRef}>
       <h1>{data.id}</h1>
       <p>Release Date: {data.release_date}</p>
       <p>Overview: {data.overview}</p>
     </div>
+    <button onClick={changeColor}>Change Color</button>
     </div>
   );
 };

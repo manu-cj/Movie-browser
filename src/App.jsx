@@ -1,39 +1,11 @@
-import './css/App.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, incrementByAmount } from './counterSlice.js'
-import ApiComponent from './api/getMovies';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/NavBar';
 
-function App() {
-  const count = useSelector(state => state.counter.value)
-  const dispatch = useDispatch()
+const App = () => (
+  <div>
+    <Navbar />
+    <Outlet />
+  </div>
+);
 
-  return (
-    <div>
-      <ApiComponent/>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-        <button
-          aria-label="add amount"
-          onClick={() => dispatch(incrementByAmount(6))}
-        >
-          add amount
-        </button>
-      </div>
-     
-    </div>
-  );
-}
-
-export default App
+export default App;

@@ -1,27 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './css/index.css'
-import { Provider } from 'react-redux';
-import store from './store';
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom';
+import App from './App';
+import HomePage from './pages/HomePage';
+import MovieDetailPage from './pages/MovieDetailPage';
 
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App/>,
+    path: '/',
+    element: <App />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: 'movie/:id', element: <MovieDetailPage /> },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
   </React.StrictMode>,
-)
+);
