@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchMovies } from '../api/tmdbApi';
-import MovieList from '../components/MovieList';
 import Spotlight from '../components/Spotlight';
+import TrendingCards from '../components/TrendingCards';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -19,7 +19,7 @@ const HomePage = () => {
     <h1><span>Movie</span>Browser</h1>
       <Spotlight />
       <h1>Films Populaires</h1>
-      <MovieList movies={movies} />
+      <TrendingCards movies={movies} />
     </>
   );
 };
