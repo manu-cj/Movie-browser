@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react';
 import { fetchMovies } from '../api/tmdbApi';
 import MovieList from '../components/MovieList';
-import SearchPage from './Searchpage';
+import Spotlight from '../components/Spotlight';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
-
+    const endpoint = "trending/movie/week"
   useEffect(() => {
     const getMovies = async () => {
-      const data = await fetchMovies('movie/popular');
+      const data = await fetchMovies(endpoint);
       setMovies(data.results);
     };
     getMovies();
   }, []);
 
   return (
-    <div>
-        <SearchPage/>
+    <>
+    <h1><span>Movie</span>Browser</h1>
+      <Spotlight />
       <h1>Films Populaires</h1>
       <MovieList movies={movies} />
-    </div>
+    </>
   );
 };
 

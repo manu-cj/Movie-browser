@@ -1,11 +1,12 @@
+import "./css/App.css";
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/NavBar';
 
 const App = () => (
-  <div>
-    <Navbar />
+  <>
     <Outlet />
-  </div>
+    <Navbar />
+  </>
 );
 
 export default App;

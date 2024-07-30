@@ -1,4 +1,5 @@
-/* Reset CSS */
+@charset "UTF-8";
+/* Reset CSS simplifié */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -15,8 +16,6 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   background: transparent;
 }
@@ -78,4 +77,57 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+h1 span {
+  color: #fa7157;
+}
+
+nav {
+  width: 100%;
+  background-color: aqua;
+  position: fixed;
+  bottom: 0;
+}
+
+.spotlight-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spotlight-section .spotlight {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 16/9;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50px;
+}
+.spotlight-section .spotlight .control {
+  width: 40%;
+  height: 100px;
+  border-radius: 25px;
+  background-color: rgba(217, 217, 217, 0.318);
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: row;
+}
+.spotlight-section .spotlight .control .play-logo {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spotlight-section .spotlight .control .data-div {
+  width: 75%;
+  height: 100%;
+  text-align: center;
+  padding-top: 25px;
+}
+.spotlight-section .spotlight .control .data-div h3 {
+  color: rgb(172, 172, 172);
 }

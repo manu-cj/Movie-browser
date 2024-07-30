@@ -1,0 +1,43 @@
+.spotlight-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .spotlight {
+        position: relative;
+        width: 60%;
+        aspect-ratio: 16/9;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50px;
+
+        .control {
+            width: 40%;
+            height: 100px;
+            border-radius: 25px;
+            background-color: rgba(217, 217, 217, 0.318);
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            display: flex;
+            flex-direction: row;
+            .play-logo {
+                width: 25%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .data-div {
+                width: 75%;
+                height: 100%;
+                text-align: center; 
+                padding-top: 25px;
+                h3 {
+                    color: rgb(172, 172, 172);
+                }
+            }
+            
+        }
+    }
+}
