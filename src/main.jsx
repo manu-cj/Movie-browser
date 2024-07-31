@@ -7,6 +7,8 @@ import {
 import App from './App';
 import HomePage from './pages/HomePage';
 import MovieDetailPage from './pages/MovieDetailPage';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 
 const router = createBrowserRouter([

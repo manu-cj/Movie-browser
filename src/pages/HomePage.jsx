@@ -16,9 +16,9 @@ const HomePage = () => {
 
   return (
     <>
-    <h1><span>Movie</span>Browser</h1>
+    <h2><span>Movie</span>Browser</h2>
       <Spotlight />
-      <h1>Films Populaires</h1>
+      <h2>Trending</h2>
       <TrendingCards movies={movies} />
     </>
   );

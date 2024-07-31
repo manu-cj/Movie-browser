@@ -16,3 +16,4 @@ export const fetchMovies = async (endpoint) => {
     console.error('Erreur de récupération des films:', error);
   }
 };
+
