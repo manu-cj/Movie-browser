@@ -24,7 +24,7 @@ function Spotlight() {
               backgroundImage: `url(https://image.tmdb.org/t/p/w200${movies.poster_path})`,
             }}
           >
-            <div className="control">
+            <div className="control glass">
                 <div className='play-logo'>
                     <img src={play} width={"100%"}/>
                 </div>
