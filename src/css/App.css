@@ -80,15 +80,25 @@ img {
   display: block;
 }
 
-h1 span {
+h2 span {
   color: #fa7157;
 }
 
 nav {
   width: 100%;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
   position: fixed;
   bottom: 0;
+  z-index: 10;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+nav img {
+  cursor: pointer;
 }
 
 .spotlight-section {
@@ -96,6 +106,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px;
 }
 .spotlight-section .spotlight {
   position: relative;
@@ -107,8 +118,7 @@ nav {
   border-radius: 50px;
 }
 .spotlight-section .spotlight .control {
-  width: 40%;
-  height: 100px;
+  width: 80%;
   border-radius: 25px;
   background-color: rgba(217, 217, 217, 0.318);
   position: absolute;
@@ -139,22 +149,30 @@ nav {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  height: 100vh;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
-.trending-section button {
+.trending-section :where(.previous-button, .next-button) {
   position: relative;
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 4rem;
   cursor: pointer;
   outline: none;
   z-index: 3;
+  color: aliceblue;
 }
 .trending-section .previous-button {
-  left: 50px;
+  left: 40px;
+}
+.trending-section .previous-button:hover {
+  color: #fa7157;
 }
 .trending-section .next-button {
-  right: 50px;
+  right: 40px;
+}
+.trending-section .next-button:hover {
+  color: #fa7157;
 }
 .trending-section .carousel {
   display: flex;
@@ -198,6 +216,7 @@ nav {
   -webkit-backdrop-filter: blur(2.5px);
   color: white;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

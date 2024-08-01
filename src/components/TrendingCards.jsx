@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import 'ldrs/tailChase'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 // Default values shown  
 
 
@@ -30,10 +31,8 @@ function TrendingCards({ movies }) {
     return (
       <>
         <section className="trending-section ">
-        <button className='previous-button' onClick={prevSlide}>◀️</button>
-
+        <FontAwesomeIcon onClick={prevSlide} icon={faCaretLeft} className='previous-button' />
           <div className="carousel">
-
             <div
               className="trending-card prev"
               style={{
@@ -62,10 +61,9 @@ function TrendingCards({ movies }) {
             ></div>
 
           </div>
-          <button className='next-button' onClick={nextSlide}>▶️</button>
-
+          <FontAwesomeIcon onClick={nextSlide} icon={faCaretRight} className='next-button' />
         </section>
-      </>
+      </> 
     );
 }
 TrendingCards.propTypes = {
