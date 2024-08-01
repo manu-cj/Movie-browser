@@ -30,29 +30,41 @@ function TrendingCards({ movies }) {
     return (
       <>
         <section className="trending-section ">
-      <button onClick={prevSlide}>◀️</button>
-      <div className="carousel">
-        <div className="trending-card prev">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movies[prevIndex].poster_path}`}
-            alt={movies[prevIndex].title}
-          />
-        </div>
-        <div className="trending-card active">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movies[currentIndex].poster_path}`}
-            alt={movies[currentIndex].title}
-          />
-        </div>
-        <div className="trending-card next">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movies[nextIndex].poster_path}`}
-            alt={movies[nextIndex].title}
-          />
-        </div>
-      </div>
-      <button onClick={nextSlide}>▶️</button>
-    </section>
+        <button className='previous-button' onClick={prevSlide}>◀️</button>
+
+          <div className="carousel">
+
+            <div
+              className="trending-card prev"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w200${movies[prevIndex].poster_path})`,
+              }}
+            ></div>
+            <div
+              className="trending-card active"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w200${movies[currentIndex].poster_path})`,
+              }}
+            >
+              <div className='glass note-div'>
+                <p>IMDB</p>
+                <p className='note'> ⭐{Math.round(movies[currentIndex].vote_average * 10) / 10 } </p>
+              </div>
+              <div className="glass trending-card-data">
+                <p> {movies[currentIndex].title} </p>
+              </div>
+            </div>
+            <div
+              className="trending-card next"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w200${movies[nextIndex].poster_path})`,
+              }}
+            ></div>
+
+          </div>
+          <button className='next-button' onClick={nextSlide}>▶️</button>
+
+        </section>
       </>
     );
 }
@@ -62,6 +74,7 @@ TrendingCards.propTypes = {
         id: PropTypes.number.isRequired,
         poster_path: PropTypes.string,
         title: PropTypes.string,
+        vote_average: PropTypes.number
       })
     ).isRequired,
   };

@@ -42,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 ol, ul {
@@ -133,29 +134,128 @@ nav {
 }
 
 .trending-section {
-  width: 80%;
+  position: relative;
   display: flex;
   align-items: center;
-  margin-top: 50px;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+}
+.trending-section button {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  outline: none;
+  z-index: 3;
+}
+.trending-section .previous-button {
+  left: 50px;
+}
+.trending-section .next-button {
+  right: 50px;
 }
 .trending-section .carousel {
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  width: 90%;
+  width: 100vw;
+  max-width: 1200px;
+  position: relative;
+  padding: 0 5vw;
 }
 .trending-section .carousel .trending-card {
-  transition: transform 0.5s ease;
+  min-width: 300px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  border-radius: 15px;
+  margin: 0 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.trending-section .carousel .trending-card.active {
+  position: relative;
+  transform: scale(1);
+  z-index: 3;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.trending-section .carousel .trending-card.active .note-div {
+  width: 25%;
+  align-self: flex-end;
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(163, 162, 162, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trending-section .carousel .trending-card.active .note-div p {
+  font-size: 10px;
+  margin: 3px;
+}
+.trending-section .carousel .trending-card.active .note-div .note {
+  font-size: 15px;
+  margin-left: 5px;
+}
+.trending-section .carousel .trending-card.active .trending-card-data {
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.trending-section .carousel .trending-card.active .trending-card-data p {
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 0;
 }
 .trending-section .carousel .trending-card.prev, .trending-section .carousel .trending-card.next {
-  width: 150px;
+  transform: scale(0.8);
   opacity: 0.5;
 }
-.trending-section .carousel .trending-card .active {
-  width: 80%;
-  opacity: 1;
+.trending-section .carousel .trending-card.prev {
+  left: -50px;
 }
-.trending-section button {
-  border: none;
-  cursor: pointer;
+.trending-section .carousel .trending-card.next {
+  right: -50px;
+}
+@media (max-width: 768px) {
+  .trending-section .carousel {
+    padding: 0 5vw;
+  }
+  .trending-section .carousel .trending-card {
+    min-width: 200px;
+    height: 300px;
+  }
+  .trending-section .carousel .trending-card.prev, .trending-section .carousel .trending-card.next {
+    transform: scale(0.7);
+  }
+}
+
+.glass {
+  background: rgba(76, 76, 76, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  padding: 5px;
 }
