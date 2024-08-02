@@ -13,5 +13,9 @@ nav {
     
     img {
         cursor: pointer;
+        transition: ease-in 0.3s;
+        &:hover {
+            scale: 1.1;
+        }
     }
 }

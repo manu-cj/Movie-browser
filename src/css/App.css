@@ -99,6 +99,10 @@ nav {
 }
 nav img {
   cursor: pointer;
+  transition: ease-in 0.3s;
+}
+nav img:hover {
+  scale: 1.1;
 }
 
 .spotlight-section {
@@ -292,6 +296,10 @@ nav img {
 .category-nav ul li {
   color: white;
   cursor: pointer;
+  transition: ease-in 0.3s;
+}
+.category-nav ul li:hover {
+  scale: 1.1;
 }
 
 .movie-list {
