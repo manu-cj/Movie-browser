@@ -32,6 +32,10 @@ const SearchPage = () => {
       const data = await fetchMovies(url, genreId, pageNumber);
       setMovies(data.results);
       setId(genreId);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
       if (data.total_pages > 500) {
         setTotalPage('500');
         console.log(totalPage);
@@ -61,10 +65,16 @@ const SearchPage = () => {
       const data = await fetchMovies(url, genreId, pageNumber);
       setMovies(data.results);
       setId(genreId);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
       if (data.total_pages > 500) {
         setTotalPage('500');
         console.log(totalPage);
       }
+
+      
       else {
         setTotalPage(data.total_pages);
       }
@@ -100,11 +110,16 @@ const SearchPage = () => {
   }
 
   const firstAndLastPage = async (genreId, pageNumber) => {
+    setActualPage(pageNumber);
     try {
       const url = `discover/movie`;
       const data = await fetchMovies(url, genreId, pageNumber);
       setMovies(data.results);
       setId(genreId);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
       if (data.total_pages > 500) {
         setTotalPage('500');
         console.log(totalPage);

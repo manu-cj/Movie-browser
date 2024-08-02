@@ -23,7 +23,7 @@
 
 .movie-list {
     width: 100%;
-    height: 65vh;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -34,7 +34,8 @@
     padding: 15px;
     padding-left: 10%;
     padding-right: 10%;
-    overflow-y: scroll;
+    margin-bottom: 50px;
+    
 
     .card {
         width: 33%;
