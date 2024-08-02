@@ -3,14 +3,12 @@ import MovieCard from './MovieCard';
 
 const MovieList = ({ movies }) => (
   
-  <div>
-    {/* {genres.map((genre, index) => (
-      <p key={index}> {genre.name} </p>
-    ))} */}
-    {movies.map((movie) => (
-      <MovieCard key={movie.id} movie={movie} />
+  <>
+    {movies.map((movie, index) => (
+      <MovieCard key={movie.id} movie={movie} index={index} />
     ))}
-  </div>
+     
+  </>
 );
 
 MovieList.propTypes = {
@@ -21,6 +19,7 @@ MovieList.propTypes = {
       title: PropTypes.string,
     })
   ).isRequired,
+
   
   // genres : PropTypes.arrayOf(
   //   PropTypes.shape({

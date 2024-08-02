@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_KEY = '5dcb863a6669daff2279567afe585904';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-export const fetchMovies = async (endpoint, genreId = null) => {
+export const fetchMovies = async (endpoint, genreId = null, pageNumber = null) => {
   try {
     const params = {
       api_key: API_KEY,
@@ -11,6 +11,10 @@ export const fetchMovies = async (endpoint, genreId = null) => {
 
     if (genreId) {
       params.with_genres = genreId;
+    }
+
+    if (pageNumber) {
+      params.page = pageNumber;
     }
 
     const response = await axios.get(`${BASE_URL}/${endpoint}`, {

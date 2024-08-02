@@ -289,3 +289,59 @@ nav img {
   gap: 15px;
   overflow-x: scroll;
 }
+.category-nav ul li {
+  color: white;
+  cursor: pointer;
+}
+
+.movie-list {
+  width: 100%;
+  height: 65vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  row-gap: 50px;
+  padding: 15px;
+  overflow-y: scroll;
+}
+.movie-list .card {
+  width: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+}
+.movie-list .card .picture-card {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 25px;
+}
+.movie-list .card p {
+  color: white;
+}
+.movie-list .pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.movie-list .pagination div {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: ease-in 0.3s;
+  padding: 5px;
+}
+.movie-list .pagination div:hover {
+  background-color: #fa7157;
+}

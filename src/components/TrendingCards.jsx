@@ -3,7 +3,6 @@ import { useState } from 'react';
 import 'ldrs/tailChase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
-// Default values shown  
 
 
 
