@@ -8,7 +8,7 @@ const Navbar = () => (
   <Link to="/">
     <img src={Group313} alt="Group 313 Logo" />
   </Link>
-  <Link to="/">
+  <Link to="/search">
     <img src={SearchIcon} alt="Search Icon" />
   </Link>
   <Link to="/">

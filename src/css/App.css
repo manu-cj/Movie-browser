@@ -31,8 +31,8 @@ body {
   line-height: 1;
   background-color: rgb(47, 46, 46);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: start;
   min-height: 100vh;
   margin: 0;
 }
@@ -276,4 +276,16 @@ nav img {
   backdrop-filter: blur(2.5px);
   -webkit-backdrop-filter: blur(3.5px);
   padding: 5px;
+}
+
+.category-nav {
+  position: initial;
+}
+.category-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: baseline;
+  gap: 15px;
+  overflow-x: scroll;
 }

@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import MovieDetailPage from './pages/MovieDetailPage';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import SearchPage from './pages/Searchpage';
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: '/', element: <HomePage /> },
+      { path: '/search', element: <SearchPage/> },
       { path: 'movie/:id', element: <MovieDetailPage /> },
     ],
   },

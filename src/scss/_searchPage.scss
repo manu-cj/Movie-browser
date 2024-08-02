@@ -1,0 +1,14 @@
+
+
+.category-nav {
+  position: initial;
+   
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: baseline;
+        gap: 15px;
+        overflow-x: scroll;
+    }
+}
