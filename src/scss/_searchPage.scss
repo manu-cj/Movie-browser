@@ -28,16 +28,29 @@
     gap: 15px;
     row-gap: 50px;
     padding: 15px;
+    padding-left: 10%;
+    padding-right: 10%;
     overflow-y: scroll;
     
 
     .card {
-        width: 150px;
+        width: 33%;
         background-repeat: no-repeat;
         background-size: cover;
-        height: 200px;
+        height: 500px;
+
+        
         .picture-card {
             width: 100%;
+            height: 450px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 25px;
+        }
+
+        .little-picture-card {
+            width: 100%;
+            height: 350px;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 25px;
@@ -75,3 +88,26 @@
        
     }
 }
+
+@media (max-width: 768px) {
+    .card {
+        width: 40%!important;
+        height: 250px !important; 
+        .picture-card {
+            width: 100%!important;
+            height: 200px!important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 25px;
+        }
+
+        .little-picture-card {
+            width: 100%!important;
+            height: 150px!important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 25px;
+        }
+ 
+    }
+  }
