@@ -239,7 +239,7 @@ nav img:hover {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(2.5px);
   -webkit-backdrop-filter: blur(2.5px);
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -268,6 +268,9 @@ nav img:hover {
   .trending-section .carousel .trending-card {
     min-width: 200px;
     height: 300px;
+  }
+  .trending-section .carousel .trending-card .trending-card-data {
+    margin-bottom: 15px !important;
   }
   .trending-section .carousel .trending-card.prev, .trending-section .carousel .trending-card.next {
     transform: scale(0.7);
@@ -306,7 +309,7 @@ nav img:hover {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
@@ -320,18 +323,18 @@ nav img:hover {
   width: 33%;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px;
+  height: 550px;
 }
 .movie-list .card .picture-card {
   width: 100%;
-  height: 450px;
+  height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 25px;
 }
 .movie-list .card .little-picture-card {
   width: 100%;
-  height: 350px;
+  height: 400px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 25px;
