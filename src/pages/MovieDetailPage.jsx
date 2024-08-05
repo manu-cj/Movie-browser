@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovies } from '../api/tmdbApi';
 import axios from 'axios';
+import { API_KEY_YouTube } from '../../config';
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ const MovieDetailPage = () => {
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const YouTube_API_KEY = import.meta.env.YouTube_API_KEY;
+  const YouTube_API_KEY =  API_KEY_YouTube;
 
   useEffect(() => {
     const getMovieDetails = async () => {
