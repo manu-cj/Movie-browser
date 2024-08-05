@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchMovies } from '../api/tmdbApi';
 import MovieList from '../components/MovieList';
+import 'ldrs/tailChase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
-
+import { faCaretLeft, faCaretRight, faSearch } from '@fortawesome/free-solid-svg-icons';
+import line from '../assets/Line 1.svg';
 
 const SearchPage = () => {
   const [query, setQuery] = useState('');
@@ -134,21 +135,7 @@ const SearchPage = () => {
     }
   }
 
-// useEffect(() => {
-//   const getCategory = async () => {
-//     try {
-//       const url = `discover/movie`;
-//       const datas = await fetchMovies(url, id);
-//       setMovies(datas.results);
-//     } catch (error) {
-//       setError('Erreur lors de la récupération des films.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   }
-//   getCategory()
-  
-// }, )
+
 
 
 
@@ -178,32 +165,49 @@ const SearchPage = () => {
 
 
   if (loading) {
-    return <div>Chargement...</div>;
+    return <div><l-tail-chase
+    size="40"
+    speed="1.75"
+    color="#fa7157" 
+  ></l-tail-chase></div>;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
 
-
+  console.log(id);
   return (
     <>
-      <h1>Recherche de Films</h1>
+      <h2><span>Movie</span>Browser</h2>
+      <section className='searchBar-section'>
+      <button onClick={handleSearch}><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></button>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Rechercher un film"
+        placeholder="search a movie"
+        onKeyUp={handleSearch}
+        
       />
-      <button onClick={handleSearch}>Rechercher</button>
+      </section>
+      
+      
       <nav className="category-nav">
-        <ul>
-          {genres.map((genre, index) => (
-            <li key={index} onClick={() => handleCategory(genre.id, actualPage)}>
-              {genre.name}
-            </li>
-          ))}
-        </ul>
+      <ul>
+  {genres.map((genre) => (
+    <li
+      key={genre.id}
+      onClick={() => handleCategory(genre.id, actualPage)}
+      style={{ color: id === genre.id ? "#fa7157" : "white" }}
+      role="button"
+      aria-label={`Select ${genre.name} genre`}
+    >
+      {genre.name}
+      {id === genre.id ? <img src={line} /> : null}
+    </li>
+  ))}
+</ul>
       </nav>
       <section className="movie-list">
         <MovieList movies={movies} totalPage={totalPage} />

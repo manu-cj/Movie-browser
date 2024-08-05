@@ -1,4 +1,31 @@
+.searchBar-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    :where(button, input[type=text]) {
+        background-color: #211F30;
+    }
+    button  {
+        font-size: medium;
+        height: 40px;
+        border: none;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        color: white;
+        
+    }
 
+    input[type=text] {
+        width: 300px;
+        height: 40px;
+        padding: 1px;
+        outline: none;
+        border: none;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        color: white;
+    }
+}
 
 .category-nav {
   position: initial;
@@ -16,6 +43,12 @@
             transition: ease-in 0.3s;
             &:hover {
                 scale: 1.1;
+            }
+
+            li {
+                width: 30%;
+                height: 5px;
+                background-color: #fa7157;
             }
         }
     }

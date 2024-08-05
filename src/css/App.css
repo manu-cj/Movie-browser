@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   width: 100%;
   line-height: 1;
-  background-color: rgb(47, 46, 46);
+  background-color: #15141F;
   display: flex;
   justify-content: space-around;
   align-items: start;
@@ -80,13 +80,18 @@ img {
   display: block;
 }
 
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+}
 h2 span {
   color: #fa7157;
 }
 
 nav {
   width: 100%;
-  background-color: rgb(47, 46, 46);
+  background-color: #15141F;
   position: fixed;
   bottom: 0;
   z-index: 10;
@@ -285,6 +290,33 @@ nav img:hover {
   padding: 5px;
 }
 
+.searchBar-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.searchBar-section :where(button, input[type=text]) {
+  background-color: #211F30;
+}
+.searchBar-section button {
+  font-size: medium;
+  height: 40px;
+  border: none;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: white;
+}
+.searchBar-section input[type=text] {
+  width: 300px;
+  height: 40px;
+  padding: 1px;
+  outline: none;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: white;
+}
+
 .category-nav {
   position: initial;
 }
@@ -303,6 +335,11 @@ nav img:hover {
 }
 .category-nav ul li:hover {
   scale: 1.1;
+}
+.category-nav ul li li {
+  width: 30%;
+  height: 5px;
+  background-color: #fa7157;
 }
 
 .movie-list {
