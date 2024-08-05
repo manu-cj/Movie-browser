@@ -9,7 +9,7 @@ const MovieDetailPage = () => {
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const YouTube_API_KEY = 'AIzaSyA4TTdG5UovPmNZdP5Tlj5oc5sOJv2qbCw';
+  const YouTube_API_KEY = import.meta.env.YouTube_API_KEY;
 
   useEffect(() => {
     const getMovieDetails = async () => {
