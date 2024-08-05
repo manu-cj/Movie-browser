@@ -12,19 +12,50 @@ const SearchPage = () => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [id, setId] = useState('');
+  const [id, setId] = useState(28);
   const [totalPage, setTotalPage] = useState('');
   const [actualPage, setActualPage] = useState(2);
 
 
   const handleSearch = async () => {
-    const data = await fetchMovies(`search/movie?query=${query}`);
-    setMovies(data.results);
-    setTotalPage(data.total_pages);
-    if (totalPage > 500) {
-      setTotalPage('500');
+    try {
+      // Vérifiez si la requête est une chaîne de caractères et n'est pas vide
+      if (typeof query !== 'string' || query.length < 1) {
+        console.log(query.length);
+        handleCategory(28);
+        return;
+      }
+  
+      // Récupérez les films en fonction de la requête de recherche
+      const data = await fetchMovies(`search/movie?query=${query}`);
+  
+      // Mettez à jour l'état avec les données récupérées
+      setMovies(data.results || []);
+      setTotalPage(data.total_pages || 0);
+  
+      // Limitez le nombre total de pages à 500
+      if (data.total_pages > 500) {
+        setTotalPage(500);
+      }
+  
+      // Si aucun résultat n'est trouvé, appelez handleCategory
+      if (data.results.length === 0) {
+        handleCategory(28);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des films:', error);
+      // Gérez l'erreur (par exemple, affichez un message à l'utilisateur)
     }
   };
+
+  const handleKeyUp = (event) => {
+    if (query.length > 1) {
+      handleSearch(event);
+    } else {
+      handleCategory(28);
+    }
+  };
+  
 
 
   const handleCategory = async (genreId, pageNumber) => {
@@ -187,7 +218,7 @@ const SearchPage = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="search a movie"
-        onKeyUp={handleSearch}
+        onKeyUp={handleKeyUp}
         
       />
       </section>

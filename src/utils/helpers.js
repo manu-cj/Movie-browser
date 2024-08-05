@@ -9,3 +9,5 @@ export const formatDate = (dateString) => {
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faCaretLeft);
+
+AIzaSyA4TTdG5UovPmNZdP5Tlj5oc5sOJv2qbCw
