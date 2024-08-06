@@ -85,7 +85,18 @@ const MovieDetailPage = () => {
       const windowHeight = window.innerHeight;
 
       if (movieDataSection) {
-        movieDataSection.style.top = `${50 - (scrollY / windowHeight) * 100}vh`;
+        const newTop = 100 - (scrollY / windowHeight) * 100;
+        const currentTop = parseFloat(movieDataSection.style.top) || 50;
+
+        console.log('scrollY:', scrollY);
+        console.log('windowHeight:', windowHeight);
+        console.log('newTop:', newTop);
+
+        const tolerance = 1.5;
+
+        if (Math.abs(currentTop - newTop) > tolerance) {
+          movieDataSection.style.top = `${newTop}vh`;
+        }
       }
     }, 30);
 

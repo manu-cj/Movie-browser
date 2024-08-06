@@ -17,7 +17,6 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
   background: transparent;
 }
 
@@ -93,7 +92,7 @@ h2 span {
 
 nav {
   width: 100%;
-  background-color: #15141F;
+  background-color: #15141f;
   position: fixed;
   bottom: 0;
   z-index: 10;
@@ -170,6 +169,7 @@ nav img:hover {
   overflow: hidden;
   margin-top: 20px;
   margin-bottom: 30px;
+  height: 60vh;
 }
 .trending-section :where(.previous-button, .next-button) {
   position: relative;
@@ -436,13 +436,13 @@ nav img:hover {
 }
 .details-page-section {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 .details-page-section .trailer-section {
   width: 100%;
   position: relative;
-  height: 50vh;
+  height: 100vh;
   overflow: hidden;
 }
 .details-page-section .trailer-section iframe {
@@ -461,7 +461,7 @@ nav img:hover {
   flex-direction: column;
   justify-content: baseline;
   position: absolute;
-  top: 60vh;
+  top: 100vh;
   width: 100%;
   height: 100vh;
   background: #15141F;
@@ -470,7 +470,7 @@ nav img:hover {
 }
 .details-page-section .movie-data-section .top-div-data-section {
   width: 100%;
-  min-height: 100px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -555,6 +555,8 @@ nav img:hover {
 
 .other-movies-section {
   width: 100%;
+  height: 40vh;
+  padding-top: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -562,17 +564,72 @@ nav img:hover {
   gap: 10px;
   overflow-x: scroll;
 }
-.other-movies-section .other-movie-div {
-  margin-top: 15px;
-  width: 33%;
-  height: 300px;
+
+.other-movie-div {
+  width: 150px;
+  height: 100%;
+  flex-shrink: 0;
+  word-break: break-all;
 }
-.other-movies-section .other-movie-div img {
+.other-movie-div img {
   width: 100px;
   height: 150px;
   border-radius: 15px;
 }
-.other-movies-section .other-movie-div p {
-  display: block;
+.other-movie-div p {
   width: 100px;
+  display: block;
+}
+.other-movie-div p a {
+  text-align: justify;
+  width: 100px;
+  height: 150px;
+  text-wrap-mode: wrap;
+}
+
+/* Styles pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 12px; /* Largeur de la barre de défilement */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0); /* Couleur de l'arrière-plan de la barre de défilement */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fa7157; /* Couleur de la barre de défilement */
+  border-radius: 20px; /* Arrondir les coins de la barre de défilement */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5937; /* Couleur de la barre de défilement lors du survol */
+}
+
+/* Styles pour Firefox */
+html {
+  scrollbar-width: thin; /* Largeur de la barre de défilement */
+  scrollbar-color: #fa7157 rgba(241, 241, 241, 0); /* Couleur de la barre de défilement et de l'arrière-plan */
+}
+
+/* Styles pour les éléments spécifiques avec des barres de défilement */
+.scrollable-element::-webkit-scrollbar {
+  width: 12px; /* Largeur de la barre de défilement */
+}
+
+.scrollable-element::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Couleur de l'arrière-plan de la barre de défilement */
+}
+
+.scrollable-element::-webkit-scrollbar-thumb {
+  background: #fa7157; /* Couleur de la barre de défilement */
+  border-radius: 20px; /* Arrondir les coins de la barre de défilement */
+}
+
+.scrollable-element::-webkit-scrollbar-thumb:hover {
+  background: #fa7157; /* Couleur de la barre de défilement lors du survol */
+}
+
+.scrollable-element {
+  scrollbar-width: thin; /* Largeur de la barre de défilement */
+  scrollbar-color: #fa7157 rgba(241, 241, 241, 0); /* Couleur de la barre de défilement et de l'arrière-plan */
 }

@@ -1,12 +1,12 @@
 .details-page-section {
     width: 100%;
-    height: 80vh;
+    height: 100vh;  
     overflow-y: scroll; 
 
     .trailer-section {
         width: 100%;    
         position: relative;
-        height: 50vh;
+        height: 100vh;
         overflow: hidden;
         iframe {
             width: 100%;
@@ -26,15 +26,15 @@
         flex-direction: column;
         justify-content: baseline;
         position: absolute;
-        top: 60vh;
+        top: 100vh;  
         width: 100%; 
         height: 100vh;
         background:  #15141F;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         .top-div-data-section {
-            width: 100%;
-            min-height: 100px;
+            width: 100%;   
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             align-items: start;
@@ -127,27 +127,38 @@
 
 .other-movies-section {
     width: 100%;
+    height: 40vh;
+    padding-top: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center; 
+    align-items: center;
     gap: 10px;
     overflow-x: scroll;
+    
+}
 
-    .other-movie-div { 
-        margin-top: 15px;
-        width: 33%;
-        height: 300px;
-             
-        img {
+.other-movie-div {  
+    width: 150px; 
+    height: 100%; 
+    flex-shrink: 0;
+    word-break: break-all;
+    
+
+    img {
+        width: 100px;
+        height: 150px;
+        border-radius: 15px;
+    }
+
+    p {
+        width: 100px;
+        display: block;
+        a { 
+            text-align: justify;
             width: 100px;
             height: 150px;
-            border-radius: 15px;
-        }
-
-        p {
-            display: block;
-            width: 100px;
+            text-wrap-mode:wrap;
         }
     }
 }

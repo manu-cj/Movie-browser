@@ -1,0 +1,47 @@
+/* Styles pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 12px; /* Largeur de la barre de défilement */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100; /* Couleur de l'arrière-plan de la barre de défilement */
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #fa7157; /* Couleur de la barre de défilement */
+    border-radius: 20px; /* Arrondir les coins de la barre de défilement */
+  }
+    
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff5937; /* Couleur de la barre de défilement lors du survol */
+  }
+  
+  /* Styles pour Firefox */  
+  html {
+    scrollbar-width: thin; /* Largeur de la barre de défilement */
+    scrollbar-color: #fa7157 #f1f1f100; /* Couleur de la barre de défilement et de l'arrière-plan */
+  } 
+  
+  /* Styles pour les éléments spécifiques avec des barres de défilement */
+  .scrollable-element::-webkit-scrollbar {
+    width: 12px; /* Largeur de la barre de défilement */
+  }
+  
+  .scrollable-element::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Couleur de l'arrière-plan de la barre de défilement */
+  }
+  
+  .scrollable-element::-webkit-scrollbar-thumb {
+    background: #fa7157; /* Couleur de la barre de défilement */
+    border-radius: 20px; /* Arrondir les coins de la barre de défilement */
+  }
+  
+  .scrollable-element::-webkit-scrollbar-thumb:hover {
+    background: #fa7157; /* Couleur de la barre de défilement lors du survol */
+  }
+  
+  .scrollable-element {
+    scrollbar-width: thin; /* Largeur de la barre de défilement */
+    scrollbar-color: #fa7157 #f1f1f100; /* Couleur de la barre de défilement et de l'arrière-plan */
+  }
+  

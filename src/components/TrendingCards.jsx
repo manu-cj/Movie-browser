@@ -49,7 +49,7 @@ function TrendingCards({ movies }) {
                 <p className='note'> ⭐{Math.round(movies[currentIndex].vote_average * 10) / 10 } </p>
               </div>
               <div className="glass trending-card-data">
-                <p> {movies[currentIndex].title} </p>
+                <p><a href={`http://127.0.0.1:5173/movie/${movies[currentIndex].id}`}>{movies[currentIndex].title} </a></p> 
               </div>
             </div>
             <div
@@ -71,7 +71,8 @@ TrendingCards.propTypes = {
         id: PropTypes.number.isRequired,
         poster_path: PropTypes.string,
         title: PropTypes.string,
-        vote_average: PropTypes.number
+        vote_average: PropTypes.number,
+        release_date: PropTypes.string
       })
     ).isRequired,
   };
