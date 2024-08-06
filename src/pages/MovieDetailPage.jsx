@@ -3,14 +3,18 @@ import { useParams } from 'react-router-dom';
 import { fetchMovies } from '../api/tmdbApi';
 import axios from 'axios';
 import { API_KEY_YouTube } from '../../config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const [scrollTimeout, setScrollTimeout] = useState(null);
 
-  const YouTube_API_KEY =  API_KEY_YouTube;
+  const YouTube_API_KEY = API_KEY_YouTube;
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -53,43 +57,139 @@ const MovieDetailPage = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const movieDataSection = document.querySelector('.movie-data-section');
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      if (movieDataSection) {
+        movieDataSection.style.top = `${40 - (scrollY / windowHeight) * 100}vh`;
+      }
+
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      setScrollTimeout(setTimeout(() => {
+        if (movieDataSection) {
+          movieDataSection.style.top = '40vh';
+        }
+      }, 100));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [scrollTimeout]);
+
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
+  const getTruncatedText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+    return text.substring(0, maxLength) + '...';
+  };
+
+  console.log(movie);
+
   return (
-    <>
-      {movie ? (
+    <section className='details-page-section'>
+      {loading ? (
         <div>
-          <h1>{movie.title}</h1>
-          <p>{movie.overview}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-            alt={movie.title}
-          />
-          {loading ? (
-            <p>Chargement...</p>
-          ) : (
-            <div>
-              {trailers.map(trailer => (
-                <div key={trailer.id.videoId}>
-                  <h3>{trailer.snippet.title}</h3>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${trailer.id.videoId}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={trailer.snippet.title}
-                  ></iframe>
-                </div>
-              ))}
-            </div>
-          )}
+          <l-tail-chase size="40" speed="1.75" color="#fa7157"></l-tail-chase>
         </div>
+      ) : (
+        <section className="trailer-section">
+          {trailers.length > 0 ? (
+            trailers.map((trailer) => (
+              <div key={trailer.id.videoId} className="trailer-div">
+                <iframe
+                  src={`https://www.youtube.com/embed/${trailer.id.videoId}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={trailer.snippet.title}
+                ></iframe>
+              </div>
+            ))
+          ) : (
+            movie && (
+              <div className="movie-image-div">
+                <img
+                  src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              </div>
+            )
+          )}
+        </section>
+      )}
+      {movie ? (
+        <section className="movie-data-section">
+          <div className="top-div-data-section">
+            <h2>{movie.title}</h2>
+            <div className="runtime-vote-div">
+              <p>
+                <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>{" "}
+                {movie.runtime} minutes{" "}
+              </p>
+              <p>
+                {" "}
+                <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                {movie.vote_average} (IMDb)
+              </p>
+            </div>
+          </div>
+          <div className="middle-div-data-section">
+            <table>
+              <thead>
+                <tr>
+                  <th>Release date</th>
+                  <th>Genre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {movie.release_date} </td>
+                  <td>
+                    {" "}
+                    <div className="genres-div">
+                      {movie.genres.map((genre) => (
+                        <p className="genre-button" key={genre.id}>
+                          {genre.name}
+                        </p>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className='synopsys-div'>
+          <p>
+            {showMore ? movie.overview : getTruncatedText(movie.overview, 150)}
+            {movie.overview.length > 150 && (
+              <span className='show-more' onClick={toggleShowMore}>
+                {showMore ? 'See less' : 'Show more'}
+              </span>
+            )}
+          </p>
+          </div>
+        </section>
       ) : (
         <div>
           <l-tail-chase size="40" speed="1.75" color="#fa7157"></l-tail-chase>
         </div>
       )}
-    </>
+    </section>
   );
 };
 
