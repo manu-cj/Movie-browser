@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovies } from '../api/tmdbApi';
 import axios from 'axios';
 import { API_KEY_YouTube } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import throttle from 'lodash/throttle';
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -12,9 +13,12 @@ const MovieDetailPage = () => {
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [scrollTimeout, setScrollTimeout] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [searchCalled, setSearchCalled] = useState(false);
+  
 
   const YouTube_API_KEY = API_KEY_YouTube;
+  const movieDataSectionRef = useRef(null);
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -22,18 +26,35 @@ const MovieDetailPage = () => {
         const data = await fetchMovies(`movie/${id}`);
         setMovie(data);
         rechercherTrailers(data);
+
+        if (!searchCalled) {
+          handleSearch(data.title);
+        }
       } catch (error) {
         console.error('Erreur lors de la récupération des détails du film:', error);
       }
     };
 
     getMovieDetails();
-  }, [id]);
+  }, [id, searchCalled]);
 
-  const rechercherTrailers = async (movie) => {
+  const handleSearch = useCallback(async (title) => {
+    if (!searchCalled) { 
+      try {
+        const data = await fetchMovies(`search/movie?query=${title.split(' ')[0]}`);
+        setMovies(data.results || []);
+        console.log(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des films:', error);
+      } finally {
+        setSearchCalled(true); 
+      }
+    }
+  }, [searchCalled]);
+
+  const rechercherTrailers = useCallback(async (movie) => {
     setLoading(true);
     try {
-      // Rechercher des trailers sur YouTube
       const youtubeResponse = await axios.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           q: `${movie.title} ${movie.release_date ? movie.release_date.split('-')[0] : ''} trailer`,
@@ -55,37 +76,24 @@ const MovieDetailPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [YouTube_API_KEY]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const movieDataSection = document.querySelector('.movie-data-section');
+    const handleScroll = throttle(() => {
+      const movieDataSection = movieDataSectionRef.current;
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
       if (movieDataSection) {
-        movieDataSection.style.top = `${40 - (scrollY / windowHeight) * 100}vh`;
+        movieDataSection.style.top = `${50 - (scrollY / windowHeight) * 100}vh`;
       }
-
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      setScrollTimeout(setTimeout(() => {
-        if (movieDataSection) {
-          movieDataSection.style.top = '40vh';
-        }
-      }, 100));
-    };
+    }, 50);
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
     };
-  }, [scrollTimeout]);
-
+  }, []);
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -98,42 +106,39 @@ const MovieDetailPage = () => {
     return text.substring(0, maxLength) + '...';
   };
 
-  console.log(movie);
 
   return (
-    <section className='details-page-section'>
+    <section className="details-page-section">
       {loading ? (
         <div>
           <l-tail-chase size="40" speed="1.75" color="#fa7157"></l-tail-chase>
         </div>
       ) : (
         <section className="trailer-section">
-          {trailers.length > 0 ? (
-            trailers.map((trailer) => (
-              <div key={trailer.id.videoId} className="trailer-div">
-                <iframe
-                  src={`https://www.youtube.com/embed/${trailer.id.videoId}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={trailer.snippet.title}
-                ></iframe>
-              </div>
-            ))
-          ) : (
-            movie && (
-              <div className="movie-image-div">
-                <img
-                  src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              </div>
-            )
-          )}
+          {trailers.length > 0
+            ? trailers.map((trailer) => (
+                <div key={trailer.id.videoId} className="trailer-div">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${trailer.id.videoId}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={trailer.snippet.title}
+                  ></iframe>
+                </div>
+              ))
+            : movie && (
+                <div className="movie-image-div">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </div>
+              )}
         </section>
       )}
       {movie ? (
-        <section className="movie-data-section">
+        <section className="movie-data-section" ref={movieDataSectionRef}>
           <div className="top-div-data-section">
             <h2>{movie.title}</h2>
             <div className="runtime-vote-div">
@@ -144,7 +149,7 @@ const MovieDetailPage = () => {
               <p>
                 {" "}
                 <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                {movie.vote_average} (IMDb)
+                {Math.round(movie.vote_average * 10) / 10} (IMDb)
               </p>
             </div>
           </div>
@@ -173,16 +178,28 @@ const MovieDetailPage = () => {
               </tbody>
             </table>
           </div>
-          <div className='synopsys-div'>
-          <p>
-            {showMore ? movie.overview : getTruncatedText(movie.overview, 150)}
-            {movie.overview.length > 150 && (
-              <span className='show-more' onClick={toggleShowMore}>
-                {showMore ? 'See less' : 'Show more'}
-              </span>
-            )}
-          </p>
+          <div className="synopsys-div">
+            <p>
+              {showMore
+                ? movie.overview
+                : getTruncatedText(movie.overview, 150)}
+              {movie.overview.length > 150 && (
+                <span className="show-more" onClick={toggleShowMore}>
+                  {showMore ? "See less" : "Show more"}
+                </span>
+              )}
+            </p>
           </div>
+          <section className='other-movies-section'>
+            {movies.map((otherMovie) => (
+              <div key={otherMovie.id} className="other-movie-div">
+                <img src={otherMovie.poster_path === null ? `https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=` : `https://image.tmdb.org/t/p/w200${otherMovie.poster_path}`} />
+                <p><a href={`http://127.0.0.1:5173/movie/${otherMovie.id}`}>{otherMovie.title} ({otherMovie.release_date.split('-')[0]}) </a></p>
+                
+                
+              </div>
+            ))}
+          </section>
         </section>
       ) : (
         <div>

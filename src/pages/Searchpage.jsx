@@ -19,32 +19,25 @@ const SearchPage = () => {
 
   const handleSearch = async () => {
     try {
-      // Vérifiez si la requête est une chaîne de caractères et n'est pas vide
       if (typeof query !== 'string' || query.length < 1) {
         console.log(query.length);
         handleCategory(28);
         return;
       }
+        const data = await fetchMovies(`search/movie?query=${query}`);
   
-      // Récupérez les films en fonction de la requête de recherche
-      const data = await fetchMovies(`search/movie?query=${query}`);
-  
-      // Mettez à jour l'état avec les données récupérées
       setMovies(data.results || []);
       setTotalPage(data.total_pages || 0);
   
-      // Limitez le nombre total de pages à 500
       if (data.total_pages > 500) {
         setTotalPage(500);
       }
   
-      // Si aucun résultat n'est trouvé, appelez handleCategory
       if (data.results.length === 0) {
         handleCategory(28);
       }
     } catch (error) {
       console.error('Erreur lors de la récupération des films:', error);
-      // Gérez l'erreur (par exemple, affichez un message à l'utilisateur)
     }
   };
 

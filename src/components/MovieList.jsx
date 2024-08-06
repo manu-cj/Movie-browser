@@ -19,14 +19,6 @@ MovieList.propTypes = {
       title: PropTypes.string,
     })
   ).isRequired,
-
-  
-  // genres : PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     id: PropTypes.number.isRequired,
-  //     name: PropTypes.string
-  //   })
-  // ).isRequired
 };
 
 export default MovieList;

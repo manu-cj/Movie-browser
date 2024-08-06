@@ -26,7 +26,7 @@
         flex-direction: column;
         justify-content: baseline;
         position: absolute;
-        top: 40vh;
+        top: 60vh;
         width: 100%; 
         height: 100vh;
         background:  #15141F;
@@ -57,10 +57,10 @@
     
             }
         }
-    
+     
         .middle-div-data-section {
             width: 100%;
-            min-height: 100px;
+            min-height: 150px;
             padding: 5px;
             display: flex;
             flex-direction: column;
@@ -102,7 +102,7 @@
 
                 .genre-button {
                     padding: 5px; 
-                    border-radius: 25%;
+                    border-radius: 25px;
                     border: 1px solid white;
                 }
             }
@@ -110,7 +110,7 @@
 
         .synopsys-div {
             width: 100%;
-            min-height: 100px;
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             align-items: start;
@@ -124,3 +124,31 @@
         }
     }
 }
+
+.other-movies-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center; 
+    gap: 10px;
+    overflow-x: scroll;
+
+    .other-movie-div { 
+        margin-top: 15px;
+        width: 33%;
+        height: 300px;
+             
+        img {
+            width: 100px;
+            height: 150px;
+            border-radius: 15px;
+        }
+
+        p {
+            display: block;
+            width: 100px;
+        }
+    }
+}
+   
