@@ -87,7 +87,7 @@ const MovieDetailPage = () => {
       if (movieDataSection) {
         movieDataSection.style.top = `${50 - (scrollY / windowHeight) * 100}vh`;
       }
-    }, 50);
+    }, 30);
 
     window.addEventListener('scroll', handleScroll);
     return () => {
