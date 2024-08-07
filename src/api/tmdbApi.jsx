@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
+const API_KEY = import.meta.env.VITE_API_KEY_TMDB;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 
