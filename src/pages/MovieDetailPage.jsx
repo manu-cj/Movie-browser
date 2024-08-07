@@ -17,7 +17,7 @@ const MovieDetailPage = () => {
   const [searchCalled, setSearchCalled] = useState(false);
   
 
-  const YouTube_API_KEY = API_KEY_YouTube;
+  const YouTube_API_KEY = process.env.API_KEY_YouTube;
   const movieDataSectionRef = useRef(null);
 
   useEffect(() => {

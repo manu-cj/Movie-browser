@@ -3,7 +3,7 @@ import { API_KEY_TMDB } from '../../config';
 
 
 
-const API_KEY = API_KEY_TMDB;
+const API_KEY = process.env.API_KEY_TMDB;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 
