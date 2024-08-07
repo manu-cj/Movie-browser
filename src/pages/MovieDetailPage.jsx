@@ -19,7 +19,7 @@ const MovieDetailPage = () => {
 
   const YouTube_API_KEY = import.meta.env.VITE_API_KEY_YouTube;
   const movieDataSectionRef = useRef(null);
-  console.log(YouTube_API_KEY);
+
 
   useEffect(() => {
     const getMovieDetails = async () => {
