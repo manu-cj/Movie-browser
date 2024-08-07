@@ -7,7 +7,6 @@ import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 
 function TrendingCards({ movies }) {
-  console.log(movies);
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? movies.length - 1 : prevIndex - 1));

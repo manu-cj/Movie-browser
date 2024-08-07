@@ -14,7 +14,6 @@ function Spotlight() {
         getMovies();
       }, []);
 
-      console.log(movies);
     return (
       <>
         <section className="spotlight-section">
