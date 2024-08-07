@@ -7,7 +7,7 @@ const MovieCard = ({ movie, index }) => (
         
       }}>
       </div>
-      <p><a href={`http://127.0.0.1:5173/movie/${movie.id}`}>{movie.title} ({movie.release_date.split('-')[0]}) </a></p>
+      <p><a href={`https://movie-browser-manu-cj.netlify.app/movie/${movie.id}`}>{movie.title} ({movie.release_date.split('-')[0]}) </a></p>
 
   </div>
   

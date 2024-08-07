@@ -48,7 +48,7 @@ function TrendingCards({ movies }) {
                 <p className='note'> ⭐{Math.round(movies[currentIndex].vote_average * 10) / 10 } </p>
               </div>
               <div className="glass trending-card-data">
-                <p><a href={`http://127.0.0.1:5173/movie/${movies[currentIndex].id}`}>{movies[currentIndex].title} </a></p> 
+                <p><a href={`https://movie-browser-manu-cj.netlify.app/movie/${movies[currentIndex].id}`}>{movies[currentIndex].title} </a></p> 
               </div>
             </div>
             <div
