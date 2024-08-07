@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovies } from '../api/tmdbApi';
 import axios from 'axios';
-import { API_KEY_YouTube } from '../../config';
+// import { API_KEY_YouTube } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
 import throttle from 'lodash/throttle';
