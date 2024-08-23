@@ -1,6 +1,6 @@
 # Movie Browser
 
-## Description
+## Description 
 
 **Movie Browser** est une application web permettant de naviguer à travers une vaste bibliothèque de films en utilisant l'API TMDB (The Movie Database). Ce projet a été développé avec **React** et **Vite** comme outil de build pour une expérience de développement rapide et fluide. L'application utilise **Sass** pour le style et la mise en forme.
 
