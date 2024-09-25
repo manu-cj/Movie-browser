@@ -1,4 +1,3 @@
-// src/ApiComponent.js
 import { useState, useEffect, useRef } from 'react';
 
 const ApiComponent = () => {
